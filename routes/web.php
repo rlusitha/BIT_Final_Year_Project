@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/reception', function () {
+//     return view('layouts/app_reception');
+// });
+
 Route::get('/reception', function () {
-    return view('layouts/app_reception');
-});
+    return view('reception.dashboard');
+})->name('reception');
+
+Route::get('/register_patient', function () {
+    return view('reception.register_patient');
+})->name('register_patient');

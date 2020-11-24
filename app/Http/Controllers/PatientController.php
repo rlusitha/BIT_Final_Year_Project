@@ -25,5 +25,7 @@ class PatientController extends Controller
         $patient->mobile_no = $request->mobile_number;
 
         $patient->save();
+
+        return back()->with('success', 'Patient added successfully');
     }
 }

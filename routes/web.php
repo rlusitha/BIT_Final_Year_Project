@@ -29,4 +29,4 @@ Route::get('/register_patient', function () {
     return view('reception.register_patient');
 })->name('register_patient');
 
-Route::post('test', 'PatientController@store');
+Route::post('register_patient', 'PatientController@store');

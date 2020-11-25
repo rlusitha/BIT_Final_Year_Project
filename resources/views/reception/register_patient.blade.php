@@ -13,7 +13,7 @@
 
 <div class="container">
 
-    @if (\Session::has('success'))
+    @if (Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         Patient addedd successfully!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -37,29 +37,29 @@
         <div class="form-row">
             <div class="form-group col-lg-6">
                 <label for="name">First Name</label>
-                <input type="text" name="fname" class="form-control" id="fname">
+                <input type="text" name="fname" class="form-control" id="fname" required>
             </div>
             <div class="form-group col-lg-6">
                 <label for="">Last Name</label>
-                <input type="text" name="lname" class="form-control" id="lname">
+                <input type="text" name="lname" class="form-control" id="lname" required>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-lg-3">
                 <label for="inputAddress">Address (No:)</label>
-                <input type="text" name="address_no" class="form-control" id="address_no" placeholder="Ex : 47/2">
+                <input type="text" name="address_no" class="form-control" id="address_no" placeholder="Ex : 47/2" required>
             </div>
             <div class="form-group col-lg-3">
                 <label for="inputAddress">Street Name</label>
-                <input type="text" name="street_name" class="form-control" id="street_name" placeholder="Ex : Morawattha Road">
+                <input type="text" name="street_name" class="form-control" id="street_name" placeholder="Ex : Morawattha Road" required>
             </div>
             <div class="form-group col-lg-3">
                 <label for="inputAddress">City</label>
-                <input type="text" name="city" class="form-control" id="address_city" placeholder="Ex : Kandana">
+                <input type="text" name="city" class="form-control" id="address_city" placeholder="Ex : Kandana" required>
             </div>
             <div class="form-group col-lg-3">
                 <label for="inputAddress">District</label>
-                <select class="custom-select" name="district">
+                <select class="custom-select" name="district" required>
                     <option selected>Choose District</option>
                     <option value="Jaffna">Jaffna</option>
                     <option value="Kilinochchi">Kilinochchi</option>
@@ -93,11 +93,11 @@
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="dob">Date of Birth</label>
-                <input type="date" class="form-control" name="dob" id="dob">
+                <input type="date" class="form-control" name="dob" id="dob" required>
             </div>
             <div class="form-group col-md-3 float-right">
                 <label for="gender">Gender</label>
-                <select class="custom-select" name="gender">
+                <select class="custom-select" name="gender" required>
                     <option selected>Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
@@ -111,15 +111,15 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputCity">National Identity Card Number</label>
-                <input type="text" name="nic" class="form-control" id="nic">
+                <input type="text" name="nic" class="form-control" id="nic" required>
             </div>
             <div class="form-group col-md-4">
                 <label for="inputState">E-mail</label>
-                <input type="email" name="email" class="form-control" id="nic">
+                <input type="email" name="email" class="form-control" id="email" required>
             </div>
             <div class="form-group col-md-2">
                 <label for="mobile_number">Mobile Number</label>
-                <input type="text" class="form-control" name="mobile_number" id="mobile_number">
+                <input type="text" class="form-control" name="mobile_number" id="mobile_number" required>
                 <small class="form-text text-muted">Format : 0777123456</small>
             </div>
         </div>

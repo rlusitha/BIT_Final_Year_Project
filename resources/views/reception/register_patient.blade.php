@@ -32,35 +32,60 @@
     <hr>
 
     <!-- Patient registration form -->
-    <form action="register_patient" method="POST">
+    <form action="register_patient" method="POST" class="needs-validation" novalidate>
         @csrf
         <div class="form-row">
             <div class="form-group col-lg-6">
                 <label for="name">First Name</label>
-                <input type="text" name="fname" class="form-control" id="fname" required>
+                <input type="text" name="fname" id="fname" class="form-control @error('fname') is-invalid @enderror" value="{{old('fname')}}" required>
+                @error('fname')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
             <div class="form-group col-lg-6">
                 <label for="">Last Name</label>
-                <input type="text" name="lname" class="form-control" id="lname" required>
+                <input type="text" name="lname" id="lname" class="form-control @error('lname') is-invalid @enderror" value="{{old('lname')}}" required>
+                @error('lname')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-lg-3">
                 <label for="inputAddress">Address (No:)</label>
-                <input type="text" name="address_no" class="form-control" id="address_no" placeholder="Ex : 47/2" required>
+                <input type="text" name="address_no" id="address_no" class="form-control @error('address_no') is-invalid @enderror" placeholder="Ex : 47/2" value="{{old('address_no')}}" required>
+                @error('address_no')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
             <div class="form-group col-lg-3">
                 <label for="inputAddress">Street Name</label>
-                <input type="text" name="street_name" class="form-control" id="street_name" placeholder="Ex : Morawattha Road" required>
+                <input type="text" name="street_name" id="street_name" class="form-control @error('street_name') is-invalid @enderror" placeholder="Ex : Morawattha Road" value="{{old('street_name')}}" required>
+                @error('street_name')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
             <div class="form-group col-lg-3">
                 <label for="inputAddress">City</label>
-                <input type="text" name="city" class="form-control" id="address_city" placeholder="Ex : Kandana" required>
+                <input type="text" name="city" id="city" class="form-control @error('city') is-invalid @enderror" placeholder="Ex : Kandana" value="{{old('city')}}" required>
+                @error('city')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
             <div class="form-group col-lg-3">
                 <label for="inputAddress">District</label>
-                <select class="custom-select" name="district" required>
-                    <option selected>Choose District</option>
+                <select id="district" class="custom-select @error('district') is-invalid @enderror" name="district" value="{{old('district')}}" required>
+                    <option value="" selected>Choose District</option>
                     <option value="Jaffna">Jaffna</option>
                     <option value="Kilinochchi">Kilinochchi</option>
                     <option value="Mannar">Mannar</option>
@@ -87,21 +112,36 @@
                     <option value="Matara">Matara</option>
                     <option value="Galle">Galle</option>
                 </select>
+                @error('district')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
                 <!-- <input type="text" class="form-control" id="address_province" placeholder="Ex : Western"> -->
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-3">
                 <label for="dob">Date of Birth</label>
-                <input type="date" class="form-control" name="dob" id="dob" required>
+                <input type="date" id="dob" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{old('dob')}}" required>
+                @error('dob')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
             <div class="form-group col-md-3 float-right">
                 <label for="gender">Gender</label>
-                <select class="custom-select" name="gender" required>
-                    <option selected>Select Gender</option>
+                <select id="gender" class="custom-select @error('gender') is-invalid @enderror" name="gender" value="{{old('gender')}}" required>
+                    <option value="" selected>Select Gender</option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
+                @error('gender')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
         </div>
         <!-- <div class="form-group">
@@ -111,16 +151,31 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputCity">National Identity Card Number</label>
-                <input type="text" name="nic" class="form-control" id="nic" required>
+                <input type="text" name="nic" id="nic" class="form-control @error('nic') is-invalid @enderror" value="{{old('nic')}}" required>
+                @error('nic')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
             <div class="form-group col-md-4">
                 <label for="inputState">E-mail</label>
-                <input type="email" name="email" class="form-control" id="email" required>
+                <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{old('email')}}" required>
+                @error('email')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
             <div class="form-group col-md-2">
                 <label for="mobile_number">Mobile Number</label>
-                <input type="text" class="form-control" name="mobile_number" id="mobile_number" required>
+                <input type="text" id="mobile_number" class="form-control @error('email') is-invalid @enderror" name="mobile_number" value="{{old('mobile_number')}}" required>
                 <small class="form-text text-muted">Format : 0777123456</small>
+                @error('mobile_number')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
             </div>
         </div>
         <!-- <div class="form-group">

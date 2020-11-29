@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,3 +30,7 @@ Route::get('/register_patient', function () {
 Route::post('register_patient', 'PatientController@store');
 
 Route::get('/view_patient', 'PatientController@viewPatient');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

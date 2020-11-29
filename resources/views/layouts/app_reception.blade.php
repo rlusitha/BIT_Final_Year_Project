@@ -70,7 +70,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                         <a class="collapse-item" href="{{ url('/register_patient') }}">Register Patient</a>
-                        <a class="collapse-item" href="cards.html">View Patient</a>
+                        <a class="collapse-item" href="{{ url('/view_patient') }}">View Patient</a>
                         <a class="collapse-item" href="cards.html">Delete Patient</a>
                     </div>
                 </div>
@@ -427,6 +427,13 @@
     <!-- Page level custom scripts -->
     <script src="{{ asset('theme/js/demo/chart-area-demo.js') }}"></script>
     <script src="{{ asset('theme/js/demo/chart-pie-demo.js') }}"></script>
+
+    <!-- Page level plugins -->
+    <script src="{{ asset('theme/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('theme/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="{{ asset('theme/js/demo/datatables-demo.js')}}"></script>
 
 </body>
 

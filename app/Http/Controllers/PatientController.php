@@ -6,43 +6,41 @@ use App\Patient_Model;
 
 use Illuminate\Http\Request;
 
+use App\Http\Requests\Validate_Patient;
+
 class PatientController extends Controller
 {   
-    public function store(Request $request)
+    //Validating and saving the patient to the database
+    public function store(Validate_Patient $request)
     {
-        // Validating input data of patient registration form
-        $validatedData = $request->validate([
-            'fname' => 'required|string',
-            'lname' => 'required|string',
-            'address_no' => 'required|string',
-            'street_name' => 'required|string',
-            'city' => 'required|string',
-            'district' => 'required',
-            'dob' => 'required',
-            'gender' => 'required',
-            'nic' => 'required',
-            'email' => 'required|email',
-            'mobile_number' => 'required|size:10'
-        ]);
-        
-        // Saving the validated data to the database
+        //When it comes to this step the input request is already validated
+        $validated = $request->validated();
+
+        //Saving the validated data to the database
         $patient = new Patient_Model;
 
-        $patient->first_name = $request->fname;
-        $patient->last_name = $request->lname;
-        $patient->address_no = $request->address_no;
-        $patient->street_name = $request->street_name;
-        $patient->city = $request->city;
-        $patient->district = $request->district;
-        $patient->date_of_birth = $request->dob;
-        $patient->gender = $request->gender;
-        $patient->nic = $request->nic;
-        $patient->email = $request->email;
-        $patient->mobile_no = $request->mobile_number;
+        $patient->first_name = $validated['fname'];
+        $patient->last_name = $validated['lname'];
+        $patient->address_no = $validated['address_no'];
+        $patient->street_name = $validated['street_name'];
+        $patient->city = $validated['city'];
+        $patient->district = $validated['district'];
+        $patient->date_of_birth = $validated['dob'];
+        $patient->gender = $validated['gender'];
+        $patient->nic = $validated['nic'];
+        $patient->email = $validated['email'];
+        $patient->mobile_no = $validated['mobile_number'];
 
         $patient->save();
         
         // Returning to the same page after submitting data to the database
         return back()->with('success', 'Patient added successfully');
+    }
+
+    //View patient method
+    public function viewPatient()
+    {
+        $guys = Patient_Model :: all();
+        return view('reception.view_patient',['patients'=>$guys]);
     }
 }

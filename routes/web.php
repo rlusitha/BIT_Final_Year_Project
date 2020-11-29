@@ -17,10 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/reception', function () {
-//     return view('layouts/app_reception');
-// });
-
 Route::get('/reception', function () {
     return view('reception.dashboard');
 })->name('reception');
@@ -30,3 +26,5 @@ Route::get('/register_patient', function () {
 })->name('register_patient');
 
 Route::post('register_patient', 'PatientController@store');
+
+Route::get('/view_patient', 'PatientController@viewPatient');

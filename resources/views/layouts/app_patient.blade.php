@@ -34,7 +34,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center">
                 <div class="sidebar-brand-icon">
                 <i class="fas fa-user-nurse"></i>
                 </div>
@@ -46,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ url('/reception') }}">
+                <a class="nav-link" href="/patient">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -69,8 +69,9 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-                        <a class="collapse-item" href="{{ url('/register_patient') }}">Register Patient</a>
-                        <a class="collapse-item" href="{{ url('/view_patient') }}">View Patient</a>
+                        <a class="collapse-item" href="/patient/create">Register Patient</a>
+                        <a class="collapse-item" href="{{ route('patient.show','$patient->id') }}">View Patient</a>
+                        <a class="collapse-item" href="{{ url('/update_patient') }}">Update Patient</a>
                         <a class="collapse-item" href="cards.html">Delete Patient</a>
                     </div>
                 </div>

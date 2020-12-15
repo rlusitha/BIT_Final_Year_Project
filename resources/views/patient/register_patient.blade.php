@@ -1,10 +1,10 @@
-@extends('layouts.app_reception')
+@extends('layouts.app_patient')
 
 @section('title', 'Register Patient')
 
 @section('breadcrumbs')
 <ol class="breadcrumb" style="margin-top: 15px;">
-    <li class="breadcrumb-item"><a href="{{ url('/reception') }}">Home</a></li>
+    <li class="breadcrumb-item"><a href="/patient">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">Register Patient</li>
 </ol>
 @endsection
@@ -32,7 +32,7 @@
     <hr>
 
     <!-- Patient registration form -->
-    <form action="register_patient" method="POST" class="needs-validation" novalidate>
+    <form action="/patient" method="POST" class="needs-validation" novalidate>
         @csrf
         <div class="form-row">
             <div class="form-group col-lg-6">

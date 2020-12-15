@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Reception extends Migration
+class CreatePatientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -37,6 +37,6 @@ class Reception extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('patient');
+        Schema::dropIfExists('patients');
     }
 }

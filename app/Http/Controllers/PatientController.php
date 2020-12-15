@@ -2,45 +2,110 @@
 
 namespace App\Http\Controllers;
 
-use App\Patient_Model;
-
+use App\Patient;
 use Illuminate\Http\Request;
-
-use App\Http\Requests\Validate_Patient;
+use App\Http\Requests\StorePatient;
 
 class PatientController extends Controller
-{   
-    //Validating and saving the patient to the database
-    public function store(Validate_Patient $request)
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        //When it comes to this step the input request is already validated
-        $validated = $request->validated();
+        $guys = Patient::all();
+        return view('patient.index')->with([
+            'guys' => $guys
+        ]);
+    }
 
-        //Saving the validated data to the database
-        $patient = new Patient_Model;
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('patient.register_patient');
+    }
 
-        $patient->first_name = $validated['fname'];
-        $patient->last_name = $validated['lname'];
-        $patient->address_no = $validated['address_no'];
-        $patient->street_name = $validated['street_name'];
-        $patient->city = $validated['city'];
-        $patient->district = $validated['district'];
-        $patient->date_of_birth = $validated['dob'];
-        $patient->gender = $validated['gender'];
-        $patient->nic = $validated['nic'];
-        $patient->email = $validated['email'];
-        $patient->mobile_no = $validated['mobile_number'];
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(StorePatient $request)
+    {
+        $request->validated();
+
+        $patient = new Patient([
+            'first_name' => $request['fname'],
+            'last_name' => $request['lname'],
+            'address_no' => $request['address_no'],
+            'street_name' => $request['street_name'],
+            'city' => $request['city'],
+            'district' => $request['district'],
+            'date_of_birth' => $request['dob'],
+            'gender' => $request['gender'],
+            'nic' => $request['nic'],
+            'email' => $request['email'],
+            'mobile_no' => $request['mobile_number'],
+        ]);
 
         $patient->save();
-        
-        // Returning to the same page after submitting data to the database
+
         return back()->with('success', 'Patient added successfully');
     }
 
-    //View patient method
-    public function viewPatient()
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Patient  $patient
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Patient $patient)
     {
-        $guys = Patient_Model :: all();
-        return view('reception.view_patient',['patients'=>$guys]);
+        // $patients = Patient :: all();
+        $patients = $patient->all();
+
+        return view('patient.view_patient', ['patient'=>$patients]);
+        
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Patient  $patient
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Patient $patient)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Patient  $patient
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Patient $patient)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Patient  $patient
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Patient $patient)
+    {
+        //
     }
 }

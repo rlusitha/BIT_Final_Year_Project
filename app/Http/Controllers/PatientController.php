@@ -15,9 +15,9 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $guys = Patient::all();
+        $patients = Patient::all();
         return view('patient.index')->with([
-            'guys' => $guys
+            'patients' => $patients
         ]);
     }
 
@@ -42,8 +42,7 @@ class PatientController extends Controller
         $request->validated();
 
         $patient = new Patient([
-            'first_name' => $request['fname'],
-            'last_name' => $request['lname'],
+            'name' => $request['name'],
             'address_no' => $request['address_no'],
             'street_name' => $request['street_name'],
             'city' => $request['city'],
@@ -68,11 +67,9 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        // $patients = Patient :: all();
-        $patients = $patient->all();
-
-        return view('patient.view_patient', ['patient'=>$patients]);
-        
+        return view('patient.show_patient')->with([
+            'patient' => $patient
+        ]);
     }
 
     /**
@@ -83,7 +80,9 @@ class PatientController extends Controller
      */
     public function edit(Patient $patient)
     {
-        //
+        return view('patient.edit_patient')->with([
+            'patient' => $patient
+        ]);
     }
 
     /**
@@ -95,7 +94,33 @@ class PatientController extends Controller
      */
     public function update(Request $request, Patient $patient)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address_no' => 'required',
+            'street_name' => 'required',
+            'city' => 'required',
+            'district' => 'required',
+            'dob' => 'required',
+            'gender' => 'required',
+            'nic' => 'required',
+            'email' => 'required',
+            'mobile_number' => 'required',
+        ]);
+
+        $patient->update([
+            'name' => $request['name'],
+            'address_no' => $request['address_no'],
+            'street_name' => $request['street_name'],
+            'city' => $request['city'],
+            'district' => $request['district'],
+            'date_of_birth' => $request['dob'],
+            'gender' => $request['gender'],
+            'nic' => $request['nic'],
+            'email' => $request['email'],
+            'mobile_no' => $request['mobile_number'],
+        ]);
+
+        return back()->with('success', 'Patient updated successfully');
     }
 
     /**

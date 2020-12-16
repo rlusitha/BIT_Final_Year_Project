@@ -11,45 +11,18 @@
 
 @section('content')
 <div class="container-fluid">
-
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800"><b>Registered Patients</b></h1>
-
-    <br>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Address No</th>
-                <th>Street Name</th>
-                <th>City</th>
-                <th>District</th>
-                <th>Date of Birth</th>
-                <th>Gender</th>
-                <th>NIC</th>
-                <th>Email</th>
-                <th>Mobile Number</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($guys as $guy)
-            <tr>
-                <td>{{$guy->first_name}}</td>
-                <td>{{$guy->last_name}}</td>
-                <td>{{$guy->address_no}}</td>
-                <td>{{$guy->street_name}}</td>
-                <td>{{$guy->city}}</td>
-                <td>{{$guy->district}}</td>
-                <td>{{$guy->date_of_birth}}</td>
-                <td>{{$guy->gender}}</td>
-                <td>{{$guy->nic}}</td>
-                <td>{{$guy->email}}</td>
-                <td>{{$guy->mobile_no}}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <div class="card">
+        <div class="card-header"><b>Registered Patients</b></div>
+        <div class="card-body">
+            <ul class="list-group">
+                @foreach($patients as $patient)
+                    <li class="list-group-item">
+                        <a href="/patient/{{$patient->id}}">{{$patient->name}}</a>
+                        <a class="btn btn-sm btn-light ml-3" href="/patient/{{$patient->id}}/edit"><i class="fas fa-edit"></i>Edit Patient</a>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
 </div>
 @endsection

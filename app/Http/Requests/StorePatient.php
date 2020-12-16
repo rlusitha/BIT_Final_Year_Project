@@ -24,8 +24,7 @@ class StorePatient extends FormRequest
     public function rules()
     {
         return [
-            'fname' => 'required|string',
-            'lname' => 'required|string',
+            'name' => 'required|string',
             'address_no' => 'required|string',
             'street_name' => 'required|string',
             'city' => 'required|string',
@@ -34,18 +33,15 @@ class StorePatient extends FormRequest
             'gender' => 'required',
             'nic' => 'required',
             'email' => 'required|email',
-            'mobile_number' => 'required|size:10'
+            'mobile_number' => 'required|size:10',
         ];
     }
 
     public function messages()
     {
         return [
-            'fname.required' => 'First name is required',
-            'fname.string' => 'First name has to be characters',
-            
-            'lname.required' => 'Last name is required',
-            'lname.string' => 'Last name has to be characters',
+            'name.required' => 'Name is required',
+            'name.string' => 'Name has to be characters',
 
             'address_no.required' => 'Address number is required',
             'address_no.string' => 'Address number should be numeric & characters',

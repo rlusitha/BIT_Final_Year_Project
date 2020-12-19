@@ -29,7 +29,7 @@
                 <li class="list-group-item">
                     <a href="/patient/{{$patient->id}}">{{$patient->name}}</a>
                     <a class="btn btn-sm btn-light ml-3" href="/patient/{{$patient->id}}/edit"><i class="fas fa-edit"></i>Edit Patient</a>
-                    <form class="float-right" style="display: inline;" action="/patient/{{$patient->id}}">
+                    <form class="float-right" style="display: inline;" action="/patient/{{$patient->id}}" method="POST">
                         @csrf
                         @method("DELETE")
                         <input class="btn btn-sm btn-outline-danger" type="submit" value="Delete">

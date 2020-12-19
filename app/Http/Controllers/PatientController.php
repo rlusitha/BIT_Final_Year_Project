@@ -103,6 +103,7 @@ class PatientController extends Controller
             'district' => 'required',
             'dob' => 'required',
             'gender' => 'required',
+            'active' => 'required',
             'nic' => 'required',
             'email' => 'required',
             'mobile_number' => 'required',
@@ -116,6 +117,7 @@ class PatientController extends Controller
             'district' => $request['district'],
             'date_of_birth' => $request['dob'],
             'gender' => $request['gender'],
+            'active' => $request['active'],
             'nic' => $request['nic'],
             'email' => $request['email'],
             'mobile_no' => $request['mobile_number'],
@@ -133,6 +135,9 @@ class PatientController extends Controller
     public function destroy(Patient $patient)
     {
         $OldName = $patient->name;
+        $patient->active = 0;
+        $patient->save();
+
         $patient->delete();
 
         return back()->with('success', 'Patient deleted successfully');

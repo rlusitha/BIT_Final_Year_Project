@@ -47,8 +47,8 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/patient">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <i class="fas fa-user-friends"></i>
+                    <span>View Patients</span></a>
             </li>
 
             <!-- Divider -->
@@ -70,9 +70,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                         <a class="collapse-item" href="/patient/create">Register Patient</a>
-                        <!-- <a class="collapse-item" href="{{ route('patient.show','$patient->id') }}">View Patient</a> -->
-                        <a class="collapse-item" href="{{ url('/update_patient') }}">Update Patient</a>
-                        <a class="collapse-item" href="cards.html">Delete Patient</a>
                     </div>
                 </div>
             </li>

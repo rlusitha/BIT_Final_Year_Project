@@ -27,6 +27,11 @@ class CreatePatientsTable extends Migration
             $table->integer('mobile_no');
             $table->timestamps();
         });
+
+        //This will add deleted_at column to the table
+        Schema::table('patients', function (Blueprint $table) {
+            $table->softDeletes();
+        });
     }
 
     /**
@@ -37,5 +42,9 @@ class CreatePatientsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('patients');
+
+        Schema::table('patients', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }

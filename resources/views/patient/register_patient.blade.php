@@ -188,11 +188,16 @@
                 </div>
                 @enderror
             </div>
+            <div class="form-group col-lg-3">
+                <label for="active">Active</label>
+                <input type="number" name="active" id="active" class="form-control @error('active') is-invalid @enderror" value="1" readonly>
+                @error('active')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
+            </div>
         </div>
-        <!-- <div class="form-group">
-            <label for="inputAddress2">Address 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-        </div> -->
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="inputCity">National Identity Card Number</label>

@@ -31,6 +31,7 @@ class StorePatient extends FormRequest
             'district' => 'required',
             'dob' => 'required',
             'gender' => 'required',
+            'active' => 'required',
             'nic' => 'required',
             'email' => 'required|email',
             'mobile_number' => 'required|size:10',
@@ -57,6 +58,8 @@ class StorePatient extends FormRequest
             'dob.required' => 'Date of birth is required',
             
             'gender.required' => 'Gender is required',
+            
+            'active.required' => 'Active is required',
             
             'nic.required' => 'National identity card number is required',
 

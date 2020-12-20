@@ -70,6 +70,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                         <a class="collapse-item" href="/patient/create">Register Patient</a>
+                        <a class="collapse-item" href="/patient/deleted_patients">Deleted Patients</a>
                     </div>
                 </div>
             </li>

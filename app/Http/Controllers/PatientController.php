@@ -142,4 +142,31 @@ class PatientController extends Controller
 
         return back()->with('success', 'Patient deleted successfully');
     }
+
+    /**
+     * Display already deleted patients.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function viewDeletedPatients()
+    {
+        $patients = Patient::onlyTrashed()->get();
+
+        return view('patient.deleted_patients')->with([
+            'patients' => $patients
+        ]);
+    }
+
+    public function restoreDeletedPatient($id)
+    {
+        Patient::onlyTrashed()
+                ->where('id',$id)
+                ->restore();
+        
+        Patient::find($id)
+                ->update(['active'=>1]);
+
+        // return back()->with('success', 'Patient restored successfully');
+        return redirect()->route('patient.index');
+    }
 }

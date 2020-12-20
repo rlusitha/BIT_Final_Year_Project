@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PatientController;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\Auth;
@@ -42,5 +43,8 @@ Auth::routes();
 // Route::get('update_view_with_data', function () {
 //     return view('patient.update_view_with_data');
 // })->name('update_view_with_data');
+Route::get('/patient/deleted_patients', 'PatientController@viewDeletedPatients');
+
+Route::get('/patient/{id}', 'PatientController@restoreDeletedPatient')->name('patient.restore');
 
 Route::resource('patient','PatientController');

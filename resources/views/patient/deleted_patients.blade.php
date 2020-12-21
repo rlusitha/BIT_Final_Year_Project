@@ -29,12 +29,7 @@
                 <li class="list-group-item">
                     {{$patient->name}}
                     <a class="btn btn-sm btn-light btn-outline-success float-right" href="{{ route('patient.restore', $patient->id) }}">Restore Patient</a>
-                    <!-- <form class="float-right" style="display: inline;" action="/patient/{{$patient->id}}" method="GET">
-                        @csrf
-                        <input class="btn btn-sm btn-outline-danger" type="submit" value="Restore">
-                    </form> -->
                 </li>
-                <!-- <a href="/patient/{{$patient->id}}"></a> -->
                 @endforeach
             </ul>
         </div>

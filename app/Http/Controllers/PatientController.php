@@ -167,6 +167,6 @@ class PatientController extends Controller
                 ->update(['active'=>1]);
 
         // return back()->with('success', 'Patient restored successfully');
-        return redirect()->route('patient.index');
+        return redirect()->route('patient.index')->with('restore', 'Patient restored successfully');
     }
 }

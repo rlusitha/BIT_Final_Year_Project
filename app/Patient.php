@@ -16,4 +16,12 @@ class Patient extends Model
     protected $fillable = [
         'name', 'address_no', 'street_name', 'city', 'district', 'date_of_birth' ,'gender', 'active', 'nic', 'email', 'mobile_no'
     ];
+
+    /**
+     * Get the token that owns the patient.
+     */
+    public function token()
+    {
+        return $this->belongsTo('App\Token');
+    }
 }

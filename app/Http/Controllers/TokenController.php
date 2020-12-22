@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Patient;
 use App\Token;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,10 @@ class TokenController extends Controller
      */
     public function index()
     {
-        //
+        $patients = Patient::all();
+        return view('patient.index_token')->with([
+            'patients' => $patients
+        ]);
     }
 
     /**

@@ -166,7 +166,6 @@ class PatientController extends Controller
         Patient::find($id)
                 ->update(['active'=>1]);
 
-        // return back()->with('success', 'Patient restored successfully');
         return redirect()->route('patient.index')->with('restore', 'Patient restored successfully');
     }
 }

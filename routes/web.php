@@ -48,3 +48,5 @@ Route::get('/patient/deleted_patients', 'PatientController@viewDeletedPatients')
 Route::get('/patient/{id}', 'PatientController@restoreDeletedPatient')->name('patient.restore');
 
 Route::resource('patient','PatientController');
+
+Route::resource('token','TokenController');

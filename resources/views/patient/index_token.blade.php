@@ -28,6 +28,14 @@
         </div>
     @endif
 
+    <div class="input-group mb-4">
+        <input type="text" class="form-control" placeholder="Search">
+        <div class="input-group-append">
+            <a href="{{ route('PatientSearch', $patients->id) }}" class="btn btn-secondary">
+                <i class="fa fa-search"></i>
+            </a>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header"><b>Patients</b></div>
         <div class="card-body">
@@ -35,6 +43,7 @@
                 @foreach($patients as $patient)
                 <li class="list-group-item">
                     <a>{{$patient->name}}</a>
+                    <a class="ml-3">{{$patient->nic}}</a>
                     <!-- <a class="btn btn-sm btn-light ml-3" href="/patient/{{$patient->id}}/edit"><i class="fas fa-edit"></i>Edit Patient</a>
                     <form class="float-right" style="display: inline;" action="/patient/{{$patient->id}}" method="POST">
                         @csrf

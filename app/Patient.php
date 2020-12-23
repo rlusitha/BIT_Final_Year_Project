@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Scout\Searchable;
 
 class Patient extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Searchable;
     /**
      * The attributes that are mass assignable.
      *

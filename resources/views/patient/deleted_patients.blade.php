@@ -28,7 +28,7 @@
                 @foreach($patients as $patient)
                 <li class="list-group-item">
                     {{$patient->name}}
-                    <a class="btn btn-sm btn-light btn-outline-success float-right" href="{{ route('patient.restore', $patient->id) }}">Restore Patient</a>
+                    <a class="btn btn-sm btn-light btn-outline-success float-right" href="/patient_restore/{{$patient->id}}">Restore Patient</a>
                 </li>
                 @endforeach
             </ul>

@@ -86,4 +86,11 @@ class TokenController extends Controller
     {
         //
     }
+
+    public function search($SearchKey)
+    {
+        $patients = Patient::search($SearchKey)->get();
+
+        return view('patient.index_token', compact('patients'));
+    }
 }

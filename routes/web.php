@@ -43,9 +43,10 @@ Auth::routes();
 // Route::get('update_view_with_data', function () {
 //     return view('patient.update_view_with_data');
 // })->name('update_view_with_data');
-Route::get('/patient/deleted_patients', 'PatientController@viewDeletedPatients');
+// Route::get('/search/{SearchKey}', 'TokenController@search')->name('PatientSearch');
+Route::get('/patient_restore/{id}', 'PatientController@restoreDeletedPatient');
 
-Route::get('/patient/{id}', 'PatientController@restoreDeletedPatient')->name('patient.restore');
+Route::get('/patient/deleted_patients', 'PatientController@viewDeletedPatients');
 
 Route::resource('patient','PatientController');
 

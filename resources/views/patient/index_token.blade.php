@@ -29,9 +29,9 @@
     @endif
 
     <div class="input-group mb-4">
-        <input type="text" class="form-control" placeholder="Search">
+        <input type="text" class="form-control" placeholder="Search" name="search">
         <div class="input-group-append">
-            <a href="{{ route('PatientSearch', $patients->id) }}" class="btn btn-secondary">
+            <a href="{{ route('PatientSearch', ['SearchKey'=>'search']) }}" class="btn btn-secondary">
                 <i class="fa fa-search"></i>
             </a>
         </div>
@@ -44,6 +44,7 @@
                 <li class="list-group-item">
                     <a>{{$patient->name}}</a>
                     <a class="ml-3">{{$patient->nic}}</a>
+                    <a class="btn btn-sm btn-light btn-outline-success float-right" href="/token/{{$patient->id}}/issue_token">Issue Token</a>
                     <!-- <a class="btn btn-sm btn-light ml-3" href="/patient/{{$patient->id}}/edit"><i class="fas fa-edit"></i>Edit Patient</a>
                     <form class="float-right" style="display: inline;" action="/patient/{{$patient->id}}" method="POST">
                         @csrf

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Patient;
 use App\Token;
 use Illuminate\Http\Request;
+use PDF;
 
 class TokenController extends Controller
 {
@@ -28,7 +29,10 @@ class TokenController extends Controller
      */
     public function create()
     {
-        //
+        // $patients = Patient::all();
+        // return view('patient.issue_token')->with([
+        //     'patients' => $patients
+        // ]);
     }
 
     /**
@@ -39,7 +43,16 @@ class TokenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tokens = new Token([
+            'patient_id' => $request['patient_id'],
+            'patient_name' => $request['patient_name'],
+            'token_number' => $request['token_number'],
+            'token_date' => $request['token_date'],
+        ]);
+
+        $tokens->save();
+
+        return redirect()->action('TokenController@getAllTokens');
     }
 
     /**
@@ -50,7 +63,9 @@ class TokenController extends Controller
      */
     public function show(Token $token)
     {
-        //
+        return view('patient.full_token')->with([
+            'tokens' => $token
+        ]);
     }
 
     /**
@@ -87,10 +102,39 @@ class TokenController extends Controller
         //
     }
 
-    public function search($SearchKey)
+    public function search($Key)
     {
-        $patients = Patient::search($SearchKey)->get();
+        // dd($SearchKey);
+        $patients = Patient::search($Key)->get();
 
         return view('patient.index_token', compact('patients'));
+    }
+
+    public function issueToken(Patient $id)
+    {
+        $date = date('Y-m-d');
+
+        return view('patient.issue_token')->with([
+            'patient_id' => $id->id,
+            'patient_name' => $id->name,
+            'token_date' => $date,
+        ]);
+    }
+
+    public function getAllTokens()
+    {
+        $tokens = Token::all();
+
+        return view('patient.show_token', compact('tokens'));
+    }
+
+    public function createPDF($id)
+    {
+        // set_time_limit(300);
+        $tokens = Token::find($id);
+
+        // view()->share('patients',$data);
+        $pdf = PDF::loadView('patient.full_token', compact('tokens'));
+        return $pdf->download('token.pdf');
     }
 }

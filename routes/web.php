@@ -59,3 +59,8 @@ Route::get('/pdf/{id}', 'TokenController@createPDF');
 Route::resource('patient','PatientController');
 
 Route::resource('token','TokenController');
+
+Route::resource('/admin/users', 'Admin\UsersController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

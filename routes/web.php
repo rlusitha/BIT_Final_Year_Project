@@ -60,7 +60,8 @@ Route::resource('patient','PatientController');
 
 Route::resource('token','TokenController');
 
-Route::resource('/admin/users', 'Admin\UsersController');
+Route::resource('/admin/users', 'Admin\UsersController')->middleware('can:manage-users');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

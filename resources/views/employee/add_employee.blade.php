@@ -1,11 +1,11 @@
-@extends('layouts.app_patient')
+@extends('layouts.app_admin')
 
-@section('title', 'Register Patient')
+@section('title', 'Add Employee')
 
 @section('breadcrumbs')
 <ol class="breadcrumb" style="margin-top: 15px;">
     <li class="breadcrumb-item"><a href="/patient">Home</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Register Patient</li>
+    <li class="breadcrumb-item active" aria-current="page">Add Employees</li>
 </ol>
 @endsection
 
@@ -15,67 +15,101 @@
 
     @if (Session::has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        Patient addedd successfully!
+        Employee addedd successfully!
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     @endif
 
-    <!-- Register Patient Heading -->
+    <!-- Add Employee Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">
-            <b>Register Patient</b>
+            <b>Add Employees</b>
         </h1>
     </div>
 
     <hr>
 
-    <!-- Patient registration form -->
-    <form action="/patient" method="POST" class="needs-validation" novalidate>
+    <!-- Employee registration form -->
+    <form action="/employee" method="POST" class="needs-validation" novalidate>
         @csrf
+
+        <!-- Title Field -->
         <div class="form-row">
-            <div class="form-group col-lg-12">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
-                @error('name')
+            <div class="form-group col-md-2">
+                <label for="title">Title</label>
+                <select name="title" class="form-control @error('title') is-invalid @enderror" required>
+                    <option value="" selected>Select Title</option>
+                    <option value="Mr." {{ old('title') == 'Mr.' ? 'selected' : ''}}>Mr.</option>
+                    <option value="Miss." {{ old('title') == 'Miss.' ? 'selected' : ''}}>Miss.</option>
+                    <option value="Mrs." {{ old('title') == 'Mrs.' ? 'selected' : ''}}>Mrs.</option>
+                    <option value="Dr." {{ old('title') == 'Dr.' ? 'selected' : ''}}>Dr.</option>
+                </select>
+                @error('title')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>
                 @enderror
             </div>
         </div>
+
+        <!-- Employee Name -->
         <div class="form-row">
-            <div class="form-group col-lg-3">
-                <label for="inputAddress">Address (No:)</label>
-                <input type="text" name="address_no" id="address_no" class="form-control @error('address_no') is-invalid @enderror" placeholder="Ex : 47/2" value="{{ old('address_no') }}" required>
-                @error('address_no')
+
+            <!-- First Name -->
+            <div class="form-group col-md-4">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required>
+                @error('first_name')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>
                 @enderror
             </div>
-            <div class="form-group col-lg-3">
-                <label for="inputAddress">Street Name</label>
-                <input type="text" name="street_name" id="street_name" class="form-control @error('street_name') is-invalid @enderror" placeholder="Ex : Morawattha Road" value="{{ old('street_name') }}" required>
-                @error('street_name')
+
+            <!-- Middle Name -->
+            <div class="form-group col-md-4">
+                <label for="middle_name">Middle Name</label>
+                <input type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" value="{{ old('middle_name') }}">
+                @error('middle_name')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>
                 @enderror
             </div>
-            <div class="form-group col-lg-3">
-                <label for="inputAddress">City</label>
-                <input type="text" name="city" id="city" class="form-control @error('city') is-invalid @enderror" placeholder="Ex : Kandana" value="{{ old('city') }}" required>
-                @error('city')
+
+            <!-- Last Name -->
+            <div class="form-group col-md-4">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control @error('last_name') is-invalid @enderror" name="last_name" value="{{ old('last_name') }}" required>
+                @error('last_name')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>
                 @enderror
             </div>
-            <div class="form-group col-lg-3">
+
+        </div>
+
+        <!-- Employee Address -->
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required>
+            @error('address')
+            <div class="invalid-feedback">
+                {{$message}}
+            </div>
+            @enderror
+        </div>
+
+        <!-- District, Contact Number, Email -->
+        <div class="form-row">
+
+            <!-- District -->
+            <div class="form-group col-md-4">
                 <label for="district">District</label>
-                <select id="district" class="custom-select @error('district') is-invalid @enderror" name="district" value="{{ old('district') }}" required>
+                <select name="district" class="form-control @error('district') is-invalid @enderror" value="{{ old('district') }}" required>
                     <option value="" selected>Choose District</option>
                     <option value="Jaffna" {{ old('district') == 'Jaffna' ? 'selected' : ''}}>
                         Jaffna
@@ -159,25 +193,54 @@
                 </div>
                 @enderror
             </div>
+
+            <!-- Contact Number -->
+            <div class="form-group col-md-4">
+                <label for="contact_number">Contact Number</label>
+                <input type="tel" class="form-control @error('contact_number') is-invalid @enderror" name="contact_number" pattern="[0-9]{3}-[0-9]{7}" value="{{ old('contact_number') }}" required>
+                <small class="form-text text-muted">Format : 077-1234567</small>
+                @error('contact_number')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
+            </div>
+
+            <!-- Email-->
+            <div class="form-group col-md-4">
+                <label for="email">Email</label>
+                <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required>
+                @error('email')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
+            </div>
+
         </div>
+
+        <!-- DOB, Gender, NIC, Designation -->
         <div class="form-row">
+
+            <!-- Date of Birth -->
             <div class="form-group col-md-3">
                 <label for="dob">Date of Birth</label>
-                <input type="date" id="dob" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}" required>
+                <input type="date" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}" required>
                 @error('dob')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>
                 @enderror
             </div>
-            <div class="form-group col-md-3 float-right">
+
+            <!-- Gender -->
+            <div class="form-group col-md-3">
                 <label for="gender">Gender</label>
-                <select id="gender" class="custom-select @error('gender') is-invalid @enderror" name="gender" required>
+                <select class="form-control @error('gender') is-invalid @enderror" name="gender" required>
                     <option value="" selected>Select Gender</option>
                     <option value="Male" {{ old('gender') == 'Male' ? 'selected' : ''}}>
                         Male
                     </option>
-
                     <option value="Female" {{ old('gender') == 'Female' ? 'selected' : ''}}>
                         Female
                     </option>
@@ -188,57 +251,36 @@
                 </div>
                 @enderror
             </div>
-            <div class="form-group col-lg-3">
-                <label for="active">Active</label>
-                <input type="number" name="active" id="active" class="form-control @error('active') is-invalid @enderror" value="1" readonly>
-                @error('active')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-                @enderror
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputCity">National Identity Card Number</label>
-                <input type="text" name="nic" id="nic" class="form-control @error('nic') is-invalid @enderror" value="{{ old('nic') }}" required>
+
+            <!-- NIC -->
+            <div class="form-group col-md-3">
+                <label for="nic">National Identity Card Number</label>
+                <input type="text" name="nic" class="form-control @error('nic') is-invalid @enderror" value="{{ old('nic') }}" required>
                 @error('nic')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>
                 @enderror
             </div>
-            <div class="form-group col-md-4">
-                <label for="inputState">E-mail</label>
-                <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" required>
-                @error('email')
+
+            <!-- Designation -->
+            <div class="form-group col-md-3">
+                <label for="nic">Designation</label>
+                <input type="text" name="designation" class="form-control @error('designation') is-invalid @enderror" value="{{ old('designation') }}" required>
+                @error('designation')
                 <div class="invalid-feedback">
                     {{$message}}
                 </div>
                 @enderror
             </div>
-            <div class="form-group col-md-2">
-                <label for="mobile_number">Mobile Number</label>
-                <input type="text" id="mobile_number" class="form-control @error('email') is-invalid @enderror" name="mobile_number" value="{{ old('mobile_number') }}" required>
-                <small class="form-text text-muted">Format : 0777123456</small>
-                @error('mobile_number')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-                @enderror
-            </div>
+
         </div>
-        <!-- <div class="form-group">
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Check me out
-                </label>
-            </div>
-        </div> -->
+
         <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="reset" class="btn btn-secondary">Reset</button>
+        <button type="button" class="btn btn-secondary ml-1" onclick="customReset()">Reset</button>
+
     </form>
 
 </div>
+
 @endsection

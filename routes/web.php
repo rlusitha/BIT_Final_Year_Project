@@ -20,29 +20,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/reception', function () {
-//     return view('patient.dashboard');
-// })->name('reception');
-
-// Route::get('/register_patient', function () {
-//     return view('patient.register_patient');
-// })->name('register_patient');
-
-// Route::post('register_patient', 'PatientController@store');
-
-// Route::get('/view_patient', 'PatientController@viewPatient');
-
 Auth::routes();
-
-// Route::get('/home', 'HomeController@index')->name('home');
-
-// Route::get('/update_patient', function () {
-//     return view('patient.update_patient');
-// });
-
-// Route::get('update_view_with_data', function () {
-//     return view('patient.update_view_with_data');
-// })->name('update_view_with_data');
 
 Route::get('/patient_restore/{id}', 'PatientController@restoreDeletedPatient');
 
@@ -56,12 +34,18 @@ Route::get('/get-all-tokens', 'TokenController@getAllTokens');
 
 Route::get('/pdf/{id}', 'TokenController@createPDF');
 
-Route::resource('patient','PatientController');
-
-Route::resource('token','TokenController');
+Route::resources([
+    'patient' => 'PatientController',
+    'token' => 'TokenController',
+    'employee' => 'EmployeeController',
+]);
 
 Route::resource('/admin/users', 'Admin\UsersController')->middleware('can:manage-users');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::view('/admin', 'admin.users.home');
+
+// Route::view('/add_employee', 'employee.add_employee');

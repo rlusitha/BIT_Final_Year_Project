@@ -20,6 +20,9 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('theme/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="{{ asset('theme/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('AppleIcon.ico') }}">
 
@@ -116,6 +119,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                         <a class="collapse-item" href="/add_employee">Add Employee</a>
+                        <a class="collapse-item" href="/add_employee">Repots</a>
                     </div>
                 </div>
             </li>

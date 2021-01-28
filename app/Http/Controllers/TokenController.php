@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Patient;
 use App\Token;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use PDF;
 
 class TokenController extends Controller
@@ -132,9 +133,11 @@ class TokenController extends Controller
     {
         // set_time_limit(300);
         $tokens = Token::find($id);
+        $timeWithDate = Carbon::now();
+        $time = $timeWithDate->toTimeString();
 
         // view()->share('patients',$data);
-        $pdf = PDF::loadView('patient.full_token', compact('tokens'));
+        $pdf = PDF::loadView('patient.full_token', with(['tokens' => $tokens, 'time' => $time]))->setPaper('b8');
         return $pdf->download('token.pdf');
     }
 }

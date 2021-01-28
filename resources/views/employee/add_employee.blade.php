@@ -72,6 +72,7 @@
             <div class="form-group col-md-4">
                 <label for="middle_name">Middle Name</label>
                 <input type="text" class="form-control @error('middle_name') is-invalid @enderror" name="middle_name" value="{{ old('middle_name') }}">
+                <small class="form-text text-muted">Middle name is optional</small>
                 @error('middle_name')
                 <div class="invalid-feedback">
                     {{$message}}

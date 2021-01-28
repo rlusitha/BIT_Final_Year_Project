@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePatient;
+use Carbon\Carbon;
+use PDF;
 
 class PatientController extends Controller
 {
@@ -48,6 +50,7 @@ class PatientController extends Controller
             'city' => $request['city'],
             'district' => $request['district'],
             'date_of_birth' => $request['dob'],
+            'age' => Carbon::parse($request['dob'])->age,
             'gender' => $request['gender'],
             'active' => $request['active'],
             'nic' => $request['nic'],
@@ -168,4 +171,28 @@ class PatientController extends Controller
 
         return redirect()->route('patient.index')->with('restore', 'Patient restored successfully');
     }
+
+    public function registeredPatientsReport()
+    {
+        $patients = Patient::all();
+
+        return view('patient.registered_patients_report')->with('patients', $patients);
+    }
+
+    public function createPatientPDF()
+    {
+        $patients = Patient::all();
+        $pdf = PDF::loadView('patient.all_patients', with(['patients' => $patients]))->setPaper('a4', 'landscape');
+
+        return $pdf->download('Patient.pdf');
+    }
+    
+    public function registeredPatientsDistrictWise()
+    {
+        $patients = Patient::all();
+
+        return view('patient.all_patients_district_wise')->with('patients',$patients);
+    }
+
+    
 }

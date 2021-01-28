@@ -6,6 +6,8 @@ use App\Employee;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEmployee;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+use PDF;
 
 class EmployeeController extends Controller
 {
@@ -16,7 +18,12 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        // $employees = DB::table('employees')->where('district','Gampaha')->get();
+        $employees = Employee::all();
+        
+        return view('employee.index')->with([
+            'employees' => $employees
+        ]);
     }
 
     /**
@@ -103,5 +110,13 @@ class EmployeeController extends Controller
     public function destroy(Employee $employee)
     {
         //
+    }
+
+    public function createEmployeePDF()
+    {
+        $employees = Employee::all();
+        $pdf = PDF::loadView('employee.all_employees', with(['employees' => $employees]))->setPaper('a4', 'landscape');
+
+        return $pdf->download('Employees.pdf');
     }
 }

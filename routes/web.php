@@ -34,6 +34,14 @@ Route::get('/get-all-tokens', 'TokenController@getAllTokens');
 
 Route::get('/pdf/{id}', 'TokenController@createPDF');
 
+Route::get('/all_employees/pdf', 'EmployeeController@createEmployeePDF');
+
+Route::get('/all_patients/pdf', 'PatientController@createPatientPDF');
+
+Route::get('/registered_patients_report', 'PatientController@registeredPatientsReport');
+
+Route::get('/registered_patients_report_district', 'PatientController@registeredPatientsDistrictWise');
+
 Route::resources([
     'patient' => 'PatientController',
     'token' => 'TokenController',

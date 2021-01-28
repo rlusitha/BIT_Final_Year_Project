@@ -34,8 +34,8 @@ class StoreEmployee extends FormRequest
             'email' => 'required|unique:employees,email|email:rfc,dns',
             'dob' => 'required|date',
             'gender' => 'required',
-            'nic' => 'required|unique:employees,nic|string',
-            'designation' => 'required|alpha',
+            'nic' => 'required|unique:employees,nic|string|size:10',
+            'designation' => 'required|string',
         ];
     }
 
@@ -74,7 +74,6 @@ class StoreEmployee extends FormRequest
             'nic.required' => 'National identity card number is required',
 
             'designation.required' => 'Designation is required',
-            'designation.alpha' => 'Designation should be characters',
         ];
     }
 }

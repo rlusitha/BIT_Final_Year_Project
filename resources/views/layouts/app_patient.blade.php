@@ -20,6 +20,9 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('theme/css/sb-admin-2.min.css') }}" rel="stylesheet">
 
+    <!-- Custom styles for this page -->
+    <link href="{{ asset('theme/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{ asset('AppleIcon.ico') }}">
 
@@ -112,7 +115,8 @@
                 <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Login Screens:</h6>
-                        <a class="collapse-item" href="login.html">Login</a>
+                        <a class="collapse-item" href="/registered_patients_report">Registered Patients</a>
+                        <a class="collapse-item" href="/registered_patients_report_district">Registered <br> Patients (District Wise)</a>
                         <a class="collapse-item" href="register.html">Register</a>
                         <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                         <div class="collapse-divider"></div>
